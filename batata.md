@@ -1,2 +1,0 @@
-OieBankai
-Katen
