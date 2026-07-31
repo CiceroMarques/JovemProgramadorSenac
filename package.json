@@ -1,0 +1,24 @@
+{
+  "name": "jovemprogramadorsenac",
+  "version": "0.0.1",
+  "description": "Códigos e desenvolvimentos realizados no programa jovem Programador do Senac",
+  "homepage": "https://github.com/CiceroMarques/JovemProgramadorSenac#readme",
+  "bugs": {
+    "url": "https://github.com/CiceroMarques/JovemProgramadorSenac/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CiceroMarques/JovemProgramadorSenac.git"
+  },
+  "license": "ISC",
+  "author": "Cícero",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node index.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
