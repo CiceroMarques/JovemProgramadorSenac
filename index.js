@@ -62,6 +62,8 @@ app.get ("/api/exercicio5/:milhas", (req, res) => {
 })
 
 
+//Exercicio 6 teste
+
 
 
 
