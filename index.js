@@ -61,6 +61,62 @@ app.get ("/api/exercicio5/:milhas", (req, res) => {
     res.send({message: Km})
 })
 
+//Exercicio 6 - segundos para horas
+
+app.get ("/api/exercicio6/:segundos", (req, res) => {
+    const segundos = Number(req.params.segundos)
+
+    const minutos = segundos * 60
+    const horas = minutos * 60
+
+    res.send({message: 'Tempo em segundo: ' +segundos+ ", tempo em minutos: " +minutos+ ", tempo em Horas: "+horas})
+
+    //para rodar (não testado) -> http://localhost:3000/api/exercicio6/500
+})
+
+app.get ("api/exercicio7", (req, res) => {
+    const distKm = Number(req.query.km)
+
+    const metros = distKm*1000
+    const centimetros = metros * 100
+
+    res.send ({message: "A disntacia informada em metros é: "+metros+ ", e em centímetros é: " +centimetros})
+
+    //para rodar (não testado) -> http://localhost:3000/api/exercicio7?km=10
+})
+
+app.get ("api/exercicio8", (req, res) => {
+    const numero = Number(req.query.numero)
+
+    let resul = [] //salvando a saída da tabuada em um array, para mostrar ela do um ao 10
+
+    for (let index = 1; index <= 10; index++) {
+        resul.push({ //a função push empilha mais uma linha no array
+            message: number+"*"+index+"="+ (number*index)
+        })
+        res.send(resul) //faz a saída completa de uma só vez mostrando toda a tabuada (cada get pode ter apenas um .send)              
+    }
+    //para rodar (não testado - acho q ta errado dessa forma) -> http://localhost:3000/api/exercicio7?numero=2
+})
+
+app.get ("api/desafio0", (req, res) => {
+    const idade = Number(req.query.idade)
+
+    const totalDias = idade * 365
+
+    const totalMeses = totalDias / 30
+
+    const dias =  totalDias % 30
+
+    const saida = ({ message: "Transformando a idade: " +idade+ " para meses e dias é: " +totalMeses+ " meses e " +dias+" dias" })
+
+    res.send(saida)
+
+})
+
+ 
+
+
 
 
 
