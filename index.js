@@ -1,10 +1,12 @@
 //console.log('Hello World');
 
-import express from 'express' //Type Module
+import express, { json } from 'express' //Type Module
 //const express = require("express") // --type common JS
 
 // inicializando o express (similar ao New em c#)
 const app = express()
+
+app.use(express.json())
 
 //Exercicio 1 - usando query nos paramentros
 app.get("/api/somar", (req, res) => {
@@ -19,7 +21,22 @@ app.get("/api/somar", (req, res) => {
     res.send({message: num1 + num2})
 })
 
-//Exercicio 2 - usando params nos parametros 
+
+//Exemplo em sala de aula utilizando o método post e o Body - aula 12/08
+//Exercicio 1 usando POST
+
+app.post("/api/somar1", (req, res) =>{
+    const num1 = req.body.num1
+    const num2 = req.body.num2
+
+    res.send({resultado: num1 + num2})
+})
+
+
+
+
+
+//Exercicio 2 - usando params nos parametros - Usando GET
 app.get("/api/salario/:valor/:hora", (req, res) => {
     const Vlr = Number(req.params.valor)
     const HorasTrab = Number(req.params.hora)
@@ -28,7 +45,19 @@ app.get("/api/salario/:valor/:hora", (req, res) => {
     res.send({message: resultado})
 })
 
-//Exercicio 3 - Media de Pesos de 5 pessoas
+
+//Exercicio 2 - usando params nos parametros - Usando POST
+app.post("/api/exercicio2", (req, res) => {
+    const Vlr = req.body.valor
+    const HorasTrab = req.body.hora
+
+    const resultado = (Vlr * HorasTrab) * 30
+    res.send({message: resultado})
+})
+
+
+
+//Exercicio 3 - Media de Pesos de 5 pessoas usando GET
 app.get("/api/exercicio3", (req, res) =>{
     const peso1 = Number(req.query.peso1)
     const peso2 = Number(req.query.peso2)
@@ -42,7 +71,23 @@ app.get("/api/exercicio3", (req, res) =>{
     //para rodar o código no navegador = http://localhost:3000/api/exercicio3?peso1=10&peso2=20&peso3=30&peso4=40&peso5=50  = resultado igual a 30
 })
 
-//Exercicio 4 - Celsius para Fahrenheit
+//Exercicio 3 - Media de Pesos de 5 pessoas usando POST
+app.post("/api/exercicio3", (req, res) =>{
+    const peso1 = req.body.peso1
+    const peso2 = req.body.peso2
+    const peso3 = req.body.peso3
+    const peso4 = req.body.peso4
+    const peso5 = req.body.peso5
+
+    const media = (peso1 + peso2 + peso3 + peso4 + peso5) / 5
+    res.send({message: media})
+
+})
+
+
+
+
+//Exercicio 4 - Celsius para Fahrenheit USANDO GET
 app.get ("/api/exercicio4", (req, res) => {
     const tempCelsius = Number(req.query.celsius)
     
@@ -53,9 +98,29 @@ app.get ("/api/exercicio4", (req, res) => {
 })
 
 
-//Exercicio 5 - Milhar para Km
+//Exercicio 4 - Celsius para Fahrenheit USANDO POST
+app.post ("/api/exercicio4", (req, res) => {
+    const tempCelsius = req.body.celsius
+    
+    const tempFahreiheit = (9 * tempCelsius + 160) / 5
+    res.send({message: tempFahreiheit})
+
+    //para rodar o  codigo no navegador = http://localhost:3000/api/exercicio4?celsius=10
+})
+
+
+//Exercicio 5 - Milhar para Km usando GET
 app.get ("/api/exercicio5/:milhas", (req, res) => {
     const distMilhas = Number(req.params.milhas)
+
+    const Km = distMilhas * 1.60934
+    res.send({message: Km})
+})
+
+
+//Exercicio 5 - Milhar para Km usando POST
+app.post ("/api/exercicio5", (req, res) => {
+    const distMilhas = req.body.milhas
 
     const Km = distMilhas * 1.60934
     res.send({message: Km})
@@ -73,6 +138,22 @@ app.get ("/api/exercicio6/:segundos", (req, res) => {
 
     //para rodar (não testado) -> http://localhost:3000/api/exercicio6/500
 })
+
+
+//Exercicio 6 - segundos para horas usando POST
+
+app.post ("/api/exercicio6", (req, res) => {
+    const segundos = req.body.segundos
+
+    const minutos = segundos / 60
+    const horas = minutos / 60
+
+    res.send({message: 'Tempo em segundo: ' +segundos+ ", tempo em minutos: " +minutos+ ", tempo em Horas: "+horas})
+})
+
+
+
+
 
 app.get ("api/exercicio7", (req, res) => {
     const distKm = Number(req.query.km)
@@ -124,5 +205,5 @@ app.get ("api/desafio0", (req, res) => {
 
 
 app.listen(3000, () => {
-    console.log("Server rodando na porta 3000 -> https://localhost:3000")
+    console.log("Server na porta 3000 -> https://localhost:3000")
 })
