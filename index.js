@@ -153,19 +153,33 @@ app.post ("/api/exercicio6", (req, res) => {
 
 
 
-
-
-app.get ("api/exercicio7", (req, res) => {
+app.get ("/api/exercicio7", (req, res) => {
     const distKm = Number(req.query.km)
 
     const metros = distKm*1000
     const centimetros = metros * 100
 
-    res.send ({message: "A disntacia informada em metros é: "+metros+ ", e em centímetros é: " +centimetros})
+    res.send ({message: "A distancia informada em é: "+metros+ " metros ou " +centimetros+" centímetros"})
 
     //para rodar (não testado) -> http://localhost:3000/api/exercicio7?km=10
 })
 
+
+//Exercicio 7 usando POST
+app.post ("/api/exercicio7", (req, res) => {
+    const distKm = req.body.km
+
+    const metros = distKm*1000
+    const centimetros = metros * 100
+
+    res.send ({message: "A distancia informada em é: "+metros+ " metros ou " +centimetros+" centímetros"})
+
+    //para rodar (não testado) -> http://localhost:3000/api/exercicio7?km=10
+})
+
+
+
+//Exercicio 8 usando GET
 app.get ("api/exercicio8", (req, res) => {
     const numero = Number(req.query.numero)
 
@@ -180,6 +194,24 @@ app.get ("api/exercicio8", (req, res) => {
     //para rodar (não testado - acho q ta errado dessa forma) -> http://localhost:3000/api/exercicio7?numero=2
 })
 
+
+//Exercicio 8 usando POST
+app.post ("/api/exercicio8", (req, res) => {
+    const number = req.body.numero
+
+    let resul = [] //salvando a saída da tabuada em um array, para mostrar ela do um ao 10
+
+    for (let index = 1; index <= 10; index++) {
+        resul.push({ //a função push empilha mais uma linha no array
+            message: number + "*" + index + "=" + (number*index)
+        })           
+    }
+    res.send(resul) //faz a saída completa de uma só vez mostrando toda a tabuada (cada get/post pode ter apenas um .send)  
+})
+
+
+
+//Desafio 0 - idade em anos e mostrar em meses e dias -  usando GET
 app.get ("api/desafio0", (req, res) => {
     const idade = Number(req.query.idade)
 
@@ -197,8 +229,25 @@ app.get ("api/desafio0", (req, res) => {
 
 
 
+//Desafio 0 - idade em anos e mostrar em meses e dias -  usando POST
+app.post ("/api/desafio0", (req, res) => {
+    const idade = req.body.idade
 
-//Exercicio 6 teste
+    const totalDias = idade * 365
+
+    const totalMeses = (totalDias / 30).toFixed(0)
+
+
+    const saida = ({ message: idade+ " ano(s) em meses é: " +totalMeses+ ". E em dias é: " +totalDias })
+
+    res.send(saida)
+
+}) 
+
+
+
+
+
 
 
 
