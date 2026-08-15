@@ -246,6 +246,160 @@ app.post ("/api/desafio0", (req, res) => {
 
 
 
+//Desafio 1 - trocar valores A e B usando POST
+
+app.post("/api/desafio1", (req, res) => {
+    let valorA = req.body.valorA
+    let valorB = req.body.valorB
+
+    const valorOrig = [valorA, valorB]
+
+    let aux = valorA
+
+    valorA = valorB
+    valorB = aux
+
+    res.send({message: "O valor original de A e B eram, respectivamente: " +valorOrig+ " e após a troca ficou... valor A: " +valorA+
+        " e valor B: " +valorB})
+})
+
+
+//Desafio 2 - Pedir dois numeros inteiros e dizer quem é maior com POST
+
+app.post("/api/desafio2", (req, res) =>{
+    const num1 = req.body.num1
+    const num2 = req.body.num2
+    let saida = "Os dois números são iguais"
+
+    if (num1>num2) {
+        saida = "O primeiro valor digitado é maior que o segundo valor!"
+    } else if (num2>num1) {
+        saida = "O segundo valor digitado é maior que o primeiro valor!"
+    } else {
+        saida
+    }
+
+    res.send({message:saida})
+})
+
+
+//======================* Exercicios de Estrutura de Condição com POST *==================================
+
+//Exercicio 9 - 3 notas de alunos e média
+
+app.post("/api/exercicio9", (req, res) =>{
+    const nota1 = req.body.nt1
+    const nota2 = req.body.nt2
+    const nota3 = req.body.nt3
+    let msg = "Reprovado"
+
+    const media = (nota1 + nota2 + nota3) / 3
+
+    if (media >= 7) {
+        msg = "Aprovado"
+    } else if (media >= 5){
+        msg = "Recuperação"
+    } else {
+        msg
+    }
+
+    res.send({message:"Aluno: " + msg})
+})
+
+
+//Exercicio 10 - Peso ideal H e M
+
+app.post("/api/exercicio10", (req, res) => {
+    let genero = req.body.genero
+    let pesoIdeal
+    const altura = req.body.altura
+    let saida
+
+    if (genero == 'H' || genero == 'h') {
+        pesoIdeal = ((72.7 * altura) - 58).toFixed(2)
+        saida = "O seu peso ideal com base no seu gênero e altura é: " +pesoIdeal 
+    } else if (genero == "M" || genero == 'm') {
+        pesoIdeal = ((62.1 * altura) - 44.7).toFixed(2)
+        saida = "O seu peso ideal com base no seu gênero e altura é: " +pesoIdeal
+    } else {
+       saida =  "Opção não reconhecida "
+    }
+
+    res.send({message:saida})
+})
+
+
+//Exercicio 11 - Soma Numeros com operação - usando POST
+
+app.post("/api/exercicio11", (req, res) =>{
+
+    const num1 = req.body.num1
+    const num2 = req.body.num2
+    let result
+    let saida
+    const op = req.body.op
+
+    if (op == "+") {
+        result = num1 + num2
+        saida = "A soma dos números é: " +result
+    } else if (op == "-") {
+        result = num1 - num2
+        saida = "A subtração dos números é: " +result
+    } else if (op == "*") {
+        result = num1 * num2
+        saida = "A multiplicação dos números é: " +result
+    } else if (op == "/") {
+        result = (num1 / num2).toFixed(2)
+        saida = "A divisão dos números é: " +result 
+    } else {
+        saida = "Operação informada inválida"
+    }
+
+    res.send({message:saida})
+})
+
+
+//Exercicio 12 positivo ou negativo com POST
+
+app.post("/api/exercicio12", (req, res) =>{
+    const numero = req.body.numero
+    let msg = "O número é igual a 0"
+
+    if (numero > 0) {
+        msg = "Número Positivo"
+    } else if (numero < 0) {
+        msg = "Número negativo"
+    } else {
+        msg
+    }
+    res.send({message: msg})
+})
+
+
+
+//Exercicio 13 - Par ou Impar
+
+app.post("/api/exercicio13", (req, res) =>{
+    const numero = req.body.numero
+    let msg = "O número é igual a 0"
+
+    if(numero % 2 == 0){
+        msg = "O número informado é par"
+    } else if(numero % 2 == 1){
+        msg = "Número informado é ímpar"
+    } else {
+        msg
+    }
+    res.send({message:msg})
+
+})
+
+
+
+
+
+
+
 
 
 
