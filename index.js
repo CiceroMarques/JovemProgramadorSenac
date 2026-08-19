@@ -395,6 +395,82 @@ app.post("/api/exercicio13", (req, res) =>{
 })
 
 
+//Exercicio 15 - Maior Número
+
+app.post("/api/exercicio15", (req, res) => {
+    const numero1 = req.body.nmr1
+    const numero2 = req.body.nmr2
+    let msg = "Os dois números são iguais"
+
+    if (numero1 > numero2) {
+        msg = "O número " +numero1+ " é maior que o número "+numero2
+    } else if (numero2>numero1) {
+        msg = "O número " +numero2+ " é maior que o número "+numero1
+    } else {
+        msg
+    }
+    res.send({message:msg})
+})
+
+
+//Exercicio 16
+
+app.post("/api/exercicio16", (req, res) => {
+    const lado1 = req.body.ld1
+    const lado2 = req.body.ld2
+    const lado3 = req.body.ld3
+    let msg = "Não é possível formar um triângulo com os lados informados"
+
+    if((lado1+lado2 > lado3) && (lado1+lado3 > lado2) && (lado2+lado3 > lado1)){
+        const base = req.body.base
+        const altura = req.body.altura
+        let area = (base*altura)/2
+
+        msg = "A área do triângulo é: " +area 
+
+    } else {
+        msg
+    }
+    res.send({message:msg})
+})
+
+
+
+//Exercicio 17
+
+app.post("/api/exercicio17", (req, res) =>{
+    const cpf = req.body.cpf
+
+    const nmrDependentes = req.body.dependente
+    let rendaMensal = req.body.mensal
+    let desconto
+    let msg = ""
+
+    if (nmrDependentes > 0) {
+        desconto = nmrDependentes*5
+        rendaMensal = rendaMensal - ((rendaMensal*desconto) /100)
+    }
+
+    if(rendaMensal  <= 3245 ) {
+        msg = "Você não paga imposto de renda!"
+    } else if (rendaMensal <= 4863) {
+        msg = "Você pagará 5% de imposto de renda!"
+        rendaMensal = (rendaMensal * 5)/100
+    } else if (rendaMensal <= 8105) {
+        msg = "Você pagará 10% de imposto de renda!"
+        rendaMensal = (rendaMensal * 10) / 100
+    } else if (rendaMensal <= 11347){
+        msg = "Você pagará 15% de imposto de renda!"
+        rendaMensal = (rendaMensal * 15) / 100
+    } else {
+        msg = "Você pagará 20% de imposto de renda!"
+        rendaMensal = (rendaMensal * 20) / 100
+    }
+
+    res.send({message:msg + " sua renda com o desconto ficará: " +rendaMensal})
+})
+
+
 
 
 
