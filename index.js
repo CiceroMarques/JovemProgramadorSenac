@@ -275,8 +275,6 @@ app.post("/api/desafio2", (req, res) =>{
         saida = "O primeiro valor digitado é maior que o segundo valor!"
     } else if (num2>num1) {
         saida = "O segundo valor digitado é maior que o primeiro valor!"
-    } else {
-        saida
     }
 
     res.send({message:saida})
@@ -299,8 +297,6 @@ app.post("/api/exercicio9", (req, res) =>{
         msg = "Aprovado"
     } else if (media >= 5){
         msg = "Recuperação"
-    } else {
-        msg
     }
 
     res.send({message:"Aluno: " + msg})
@@ -369,8 +365,6 @@ app.post("/api/exercicio12", (req, res) =>{
         msg = "Número Positivo"
     } else if (numero < 0) {
         msg = "Número negativo"
-    } else {
-        msg
     }
     res.send({message: msg})
 })
@@ -387,8 +381,6 @@ app.post("/api/exercicio13", (req, res) =>{
         msg = "O número informado é par"
     } else if(numero % 2 == 1){
         msg = "Número informado é ímpar"
-    } else {
-        msg
     }
     res.send({message:msg})
 
@@ -406,8 +398,6 @@ app.post("/api/exercicio15", (req, res) => {
         msg = "O número " +numero1+ " é maior que o número "+numero2
     } else if (numero2>numero1) {
         msg = "O número " +numero2+ " é maior que o número "+numero1
-    } else {
-        msg
     }
     res.send({message:msg})
 })
@@ -427,10 +417,8 @@ app.post("/api/exercicio16", (req, res) => {
         let area = (base*altura)/2
 
         msg = "A área do triângulo é: " +area 
-
-    } else {
-        msg
     }
+    
     res.send({message:msg})
 })
 
@@ -467,8 +455,31 @@ app.post("/api/exercicio17", (req, res) =>{
         rendaMensal = (rendaMensal * 20) / 100
     }
 
-    res.send({message:msg + " sua renda com o desconto ficará: " +rendaMensal})
+    res.send({message:msg + " Você terá " +(rendaMensal).toFixed(2) + " reais de desconto"})
 })
+
+
+
+//Desafio 3 - menor de 3 números
+
+app.post("/api/desafio3", (req, res) => {
+    const num1 = req.body.nm1 //2
+    const num2 = req.body.nm2 //1
+    const num3 = req.body.nm3 //15
+
+    let menor = num1 //2
+    
+    if (num2 < menor) {//1 é menor q 2? 
+        menor = num2
+    } 
+    if (num3 < menor){
+        menor = num3
+    }
+    res.send({message:"O menor valor digitado é: " +menor})
+})
+
+
+
 
 
 
