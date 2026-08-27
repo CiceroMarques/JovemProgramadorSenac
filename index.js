@@ -1,6 +1,6 @@
 //console.log('Hello World');
 
-import express, { json } from 'express' //Type Module
+import express from 'express' //Type Module
 //const express = require("express") // --type common JS
 
 // inicializando o express (similar ao New em c#)
@@ -477,6 +477,69 @@ app.post("/api/desafio3", (req, res) => {
     }
     res.send({message:"O menor valor digitado é: " +menor})
 })
+
+
+//Desafio 4 - Ano Bissexto
+
+app.post("/api/desafio4", (req, res) => {
+    const ano = req.body.ano
+    let msg = "é bissexto"
+
+    if (ano % 4 == 0) {
+        if (ano % 100 == 0 && ano % 400 != 0) {
+            msg = "Não é bissexto"
+        } else {
+            msg = "É bissexto"
+        }
+    } else {
+        msg = "Não é Bissexto"
+    }
+
+    res.send({message:msg}) //2016 é Bissexto -  2017 não é
+})
+
+
+
+//Exercicio 17 - 3 notas e media ponderada
+app.post("/api/exercicio17.2", (req, res) => {
+    const nota1 = req.body.nota1
+    const nota2 = req.body.nota2
+    const nota3 = req.body.nota3
+    const nota4  = req.body.nota4
+
+    const peso1 = req.body.peso1
+    const peso2 = req.body.peso2
+    const peso3 = req.body.peso3
+    const peso4 = req.body.peso4
+
+    const mediaFinal = (((nota1 * peso1) + (nota2 * peso2) + (nota3 * peso3) + (nota4 * peso4)) / (peso1 + peso2 + peso3)).toFixed(1)
+
+    res.send({message: "A média é " + mediaFinal})
+})
+
+
+//Exercicio 18 - custo de fabrica do carro
+app.post("/api/exercicio18", (req, res) => {
+    const custoCarro = req.body.carro
+    const vlrDistribuidor = custoCarro * 0.28 
+    const vlrImposto = custoCarro * 0.45
+    const valorFinal = custoCarro + vlrImposto + vlrDistribuidor
+
+    res.send({message: "O valor final para o consumidor será: " +valorFinal})
+})
+
+
+//Exercicio 19 - capital inicial e taxa juros
+app.post("/api/exercicio19", (req, res) => {
+    const capital = req.body.capital
+    const txJuros = req.body.juros
+    const dias = req.body.dias
+
+    const montante = capital + ((capital * txJuros) * dias)
+
+    res.send({message: `O montante é ${montante}`})
+})
+
 
 
 
