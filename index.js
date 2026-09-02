@@ -542,6 +542,80 @@ app.post("/api/exercicio19", (req, res) => {
 
 
 
+//Exercicio 20 = calcular o IPI usando get
+app.get("/api/exercicio20", (req, res) => {
+    const txIpi = req.query.ipi
+    const valor1 = req.query.vlr1
+    const qtd1 = req.query.qtd1
+    const valor2 = req.query.vlr2
+    const qtd2 = req.query.qtd2
+
+    const total = ((valor1 * qtd1 + valor2 * qtd2) * (1 + txIpi / 100)).toFixed(2)
+    res.send({message: `O valor total com a taxa do IPI é ${total}`})
+})
+
+
+//Exercicio 21 - Perguntas para o Crime - Get e query
+app.get("/api/exercicio21", (req, res) => {
+    let qtdSim = 0
+    let msg
+
+    const question1 = req.query.q1
+    if(question1 == "Sim") {
+        qtdSim = qtdSim + 1
+    }
+
+    const question2 = req.query.q2
+    if(question2 == "Sim") {
+        qtdSim = qtdSim + 1
+    }
+
+    const question3 = req.query.q3
+    if(question3 == "Sim") {
+        qtdSim++
+    }
+    
+    const question4 = req.query.q4
+    if(question4 == "Sim") {
+        qtdSim++
+    }
+
+    const question5 = req.query.q5
+    if(question5 == "Sim") {
+        qtdSim++
+    }
+
+    const question6 = req.query.q6
+    if(question6 == "Sim") {
+        qtdSim++
+    }
+
+    const question7 = req.query.q7
+    if(question7 == "Sim") {
+        qtdSim++
+    }
+
+    const question8 = req.query.q8
+    if(question8 == "Sim") {
+        qtdSim++
+    }
+
+    if (qtdSim < 4) {
+        msg = "Inocente"
+    } else if (qtdSim == 4) {
+        msg = "Suspeito"
+    } else if (qtdSim < 7) {
+        msg = "Possível Criminoso"
+    } else {
+        msg = "Assa çino"
+    }
+
+    res.send({message:msg, qtdSim})
+
+})
+
+
+
 
 
 
