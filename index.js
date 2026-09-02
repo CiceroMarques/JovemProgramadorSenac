@@ -555,6 +555,7 @@ app.get("/api/exercicio20", (req, res) => {
 })
 
 
+
 //Exercicio 21 - Perguntas para o Crime - Get e query
 app.get("/api/exercicio21", (req, res) => {
     let qtdSim = 0
@@ -612,6 +613,25 @@ app.get("/api/exercicio21", (req, res) => {
 
     res.send({message:msg, qtdSim})
 
+})
+
+
+
+
+//Exercicio 22 - Velocidade maxima e multa usando GET - Params
+
+app.get("/api/exercicio22/:velMotora/:velVia", (req, res) => {
+    const velMotora = req.params.velMotora
+    const velVia = req.params.velVia
+    let msg  = "Velocidade dentro do limite, sem multa!"
+    let MultaMarior = velMotora + (velMotora * 0.2) 
+    if (velMotora > MultaMarior) {
+        msg = "Velocidade acima dos 20% permitido na rodovia. Multa de R$ 500,00 " 
+    } else if (velMotora > velVia) {
+        msg = "Velocidade acima da permitida, multa de R$ 102,00 "
+    }
+    
+    res.send({message: msg})
 })
 
 
