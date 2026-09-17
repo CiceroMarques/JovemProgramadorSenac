@@ -21,11 +21,16 @@ class ControllerExercicio {
 
     }
     Somar1(req, res) { //esse é com post
-        const num1 = req.body.num1
-        const num2 = req.body.num2
-        const soma = ServiceExercicio.Somar1(num1, num2)
+         try {
+            const num1 = Number(req.query.num1)
+            const num2 = Number(req.query.num2)
+            const soma = ServiceExercicio.Somar1(num1, num2)
 
-        res.send({ message: soma })
+            res.send({ message: soma })
+
+        } catch (error) {
+            res.send({ message: error.message})
+        }
     }
 
     Salario(req, res) {
