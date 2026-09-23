@@ -45,7 +45,7 @@ class ControllerExercicio {
         const Vlr = req.body.valor
         const HorasTrab = req.body.hora
 
-        const resultado = (Vlr * HorasTrab) * 30
+        const resultado = ServiceExercicio.Exercicio2(Vlr, HorasTrab)
         res.send({ message: resultado })
     }
 
@@ -56,32 +56,35 @@ class ControllerExercicio {
         const peso4 = req.body.peso4
         const peso5 = req.body.peso5
 
-        const media = (peso1 + peso2 + peso3 + peso4 + peso5) / 5
+        const media = ServiceExercicio.Exercicio3(peso1, peso2, peso3, peso4, peso5)
         res.send({ message: media })
 
     }
+
     Exercicio4(req, res) {
         const tempCelsius = req.body.celsius
 
-        const tempFahreiheit = (9 * tempCelsius + 160) / 5
+        const tempFahreiheit = ServiceExercicio.Exercicio4(tempCelsius)
         res.send({ message: tempFahreiheit })
 
         //para rodar o  codigo no navegador = http://localhost:3000/api/exercicio4?celsius=10
     }
+
     Exercicio5(req, res) {
         const distMilhas = req.body.milhas
 
-        const Km = distMilhas * 1.60934
+        const Km = ServiceExercicio.Exercicio5(distMilhas)
         res.send({ message: Km })
     }
+
     Exercicio6(req, res) {
         const segundos = req.body.segundos
 
-        const minutos = segundos / 60
-        const horas = minutos / 60
+        const {minutos, horas} = ServiceExercicio.Exercicio6(segundos);
 
         res.send({ message: 'Tempo em segundo: ' + segundos + ", tempo em minutos: " + minutos + ", tempo em Horas: " + horas })
     }
+
     Exercicio7(req, res) {
         const distKm = req.body.km
 
